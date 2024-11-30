@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -23,5 +24,21 @@ class PostController extends Controller
 
     // Pass to Inertia
     return inertia('Home', ['posts' => $posts]);
+}
+
+public function create(){
+    return inertia('Create');
+}
+
+public function store(Request $request){
+    sleep(2);
+
+    $field = $request -> validate([
+        'body' => ['required']
+    ]);
+
+    Post::create($field);
+
+    return redirect('/');
 }
 }
