@@ -30,6 +30,10 @@ public function create(){
     return inertia('Create');
 }
 
+public function show(Post $post){
+    return inertia('Show', ['post' => $post]);
+}
+
 public function store(Request $request){
     sleep(2);
 

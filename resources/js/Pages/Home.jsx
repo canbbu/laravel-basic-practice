@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import Layout from '../Layouts/Layout';
 import { Link } from '@inertiajs/react';
+import {useRoute} from '../../../vendor/tightenco/ziggy';
 
 export default function Home({ posts }) {
-    console.log(posts);  // Check if data is coming here
-    console.log("yooyo");
+    const route = useRoute();
 
     return (
             <div>
@@ -17,6 +17,9 @@ export default function Home({ posts }) {
                                 <span>{new Date(post.created_at).toLocaleTimeString()}</span>
                             </div>
                             <p className='font-medium'>{post.body}</p>
+
+                            {/* <Link href={`/posts/${post}`} className="text-link">Read more...</Link> */}
+                            <Link href={route('posts.show', post)} className="text-link">Read more...</Link>
                         </div>
                     ))}
                 </div>
